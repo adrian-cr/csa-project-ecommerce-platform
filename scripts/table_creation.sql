@@ -1,5 +1,7 @@
+USE ECommercePlatform;
+
 CREATE TABLE Users (
-  user_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  user_id INT PRIMARY KEY AUTO_INCREMENT,
   username VARCHAR(50) NOT NULL,
   email VARCHAR(100) NOT NULL,
   password VARCHAR(255) NOT NULL,
@@ -7,7 +9,7 @@ CREATE TABLE Users (
 );
 
 CREATE TABLE Products (
-  product_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  product_id INT PRIMARY KEY AUTO_INCREMENT,
   product_name VARCHAR(100) NOT NULL,
   category VARCHAR(50) NOT NULL,
   price DECIMAL(10, 2) NOT NULL,
@@ -15,7 +17,7 @@ CREATE TABLE Products (
 );
 
 CREATE TABLE Orders (
-  order_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  order_id INT PRIMARY KEY AUTO_INCREMENT,
   user_id INT REFERENCES Users(user_id),
   order_date DATETIME,
   total_amount DECIMAL(10, 2),
@@ -23,7 +25,7 @@ CREATE TABLE Orders (
 );
 
 CREATE TABLE OrderDetails (
-  order_detail_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  order_detail_id INT PRIMARY KEY AUTO_INCREMENT,
   order_id INT REFERENCES Orders(order_id),
   product_id INT REFERENCES Products(product_id),
   quantity INT NOT NULL,
@@ -31,7 +33,7 @@ CREATE TABLE OrderDetails (
 );
 
 CREATE TABLE Payments (
-  payment_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  payment_id INT PRIMARY KEY AUTO_INCREMENT,
   order_id INT REFERENCES Orders(order_id),
   payment_date DATE NOT NULL,
   payment_method VARCHAR(50) NOT NULL,
@@ -39,7 +41,7 @@ CREATE TABLE Payments (
 );
 
 CREATE TABLE Reviews (
-  review_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  review_id INT PRIMARY KEY AUTO_INCREMENT,
   product_id INT REFERENCES Products(product_id),
   user_id INT REFERENCES Users(user_id),
   review_text TEXT,
@@ -47,10 +49,8 @@ CREATE TABLE Reviews (
   review_date DATE NOT NULL
 );
 
-
-
 CREATE TABLE UserActivity (
-  activity_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  activity_id INT PRIMARY KEY AUTO_INCREMENT,
   user_id INT REFERENCES Users(user_id),
   activity_type VARCHAR(50) NOT NULL,
   activity_date DATE NOT NULL
