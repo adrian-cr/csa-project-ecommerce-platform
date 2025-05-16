@@ -51,7 +51,8 @@ CREATE TABLE Reviews (
 
 CREATE TABLE UserActivity (
   activity_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  user_id INT REFERENCES Users(user_id),
+  entity_type VARCHAR(50),
+  entity_id INT NOT NULL,
   activity_type VARCHAR(50) NOT NULL,
   activity_date DATE NOT NULL
 );
