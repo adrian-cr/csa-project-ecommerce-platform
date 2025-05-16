@@ -46,3 +46,12 @@ CREATE TABLE Reviews (
   rating INT CHECK (rating BETWEEN 1 AND 5) NOT NULL,
   review_date DATE NOT NULL
 );
+
+
+
+CREATE TABLE UserActivity (
+  activity_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  user_id INT REFERENCES Users(user_id),
+  activity_type VARCHAR(50) NOT NULL,
+  activity_date DATE NOT NULL
+);
