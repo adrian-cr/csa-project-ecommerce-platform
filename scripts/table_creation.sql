@@ -49,7 +49,7 @@ CREATE TABLE Reviews (
   review_date DATE NOT NULL
 );
 
-CREATE TABLE UserActivity (
+CREATE TABLE SiteActivity (
   activity_id INT PRIMARY KEY AUTO_INCREMENT,
   entity_type VARCHAR(50),
   entity_id INT NOT NULL,
