@@ -38,7 +38,7 @@ The project utilizes mock data provided by Mockaroo. Here is a breakdow with eac
 | `Payments`  | `payment_id` (INT), `order_id` (INT), `payment_date` (DATE), `payment_method` (VARCHAR), `amount` (DECIMAL) | `payment_id`: PRIMARY KEY, `order_id`: FOREIGN KEY  |
 | `Reviews`  | `review_id` (INT), `product_id` (INT), `user_id` (INT), `review_text` (TEXT), `rating` (INT), `review_date` (DATE)  | `review_id`: PRIMARY KEY, `user_id`: FOREIGN KEY, `product_id`: FOREIGN KEY, `rating`: CHECK (`rating BETWEEN 1 AND 5`) |
 | `SiteActivity` | `activity_id` (INT), `entity_type` (VARCHAR), `entity_id` (INT), `activity_type` (VARCHAR), `activity_date` (DATE) | `activity_id`: PRIMARY KEY, `user_id`: FOREIGN KEY |
-| `MostActiveUsers` | `User_id` (INT), `ActivityCount` (INT)  | No constraints  |
+| `MostActiveUsers` | `ID` (INT), `Activity Count` (INT)  | No constraints  |
 
 *No fields can be `NULL`.
 
