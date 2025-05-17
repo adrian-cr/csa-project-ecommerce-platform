@@ -10,7 +10,7 @@ BEGIN
     WHERE id = NEW.order_id;
 END$$
 
--- Triggers to generate a report on the most active users once there have been 1000 changes to users, products, or orders (uses SiteActivity table):
+-- Log activity for Users, Products, and Orders:
 /* USERS: */
 CREATE TRIGGER log_activity_usr_create
 AFTER INSERT ON Users
@@ -94,7 +94,7 @@ BEGIN
        -- Generate a dynamic name for the report
        SET @report_name = CONCAT('most_active_users_', DATE_FORMAT(NOW(), '%Y%m%d_%H%i%s'));
        -- Create the materialized view with the dynamic name
-       SET @sql = CONCAT('CREATE OR REPLACE VIEW ', @report_name, 'CREATE MATERIALIZED VIEW most_active_users AS SELECT entity_id AS "ID", COUNT(*) AS "Activity Count" FROM SiteActivity WHERE entity_type = ''user'' GROUP BY 1 ORDER BY 2 DESC');
+       SET @sql = CONCAT('CREATE OR REPLACE VIEW ', @report_name, 'CREATE MATERIALIZED VIEW MostActiveUsers AS SELECT entity_id AS "ID", COUNT(*) AS "Activity Count" FROM SiteActivity WHERE entity_type = ''user'' GROUP BY 1 ORDER BY 2 DESC');
        PREPARE stmt FROM @sql;
        EXECUTE stmt;
        DEALLOCATE PREPARE stmt;
@@ -108,5 +108,3 @@ FOR EACH ROW
 BEGIN
    CALL generate_1000_interaction_report();
 END$$
-
-
