@@ -1,4 +1,4 @@
-/* I. QUERIES */
+/* I. SIMPLE QUERIES */
 -- Retrieve the list of all products in a specific category:
 SELECT *
 FROM Products
@@ -60,7 +60,7 @@ GROUP BY 1
 ORDER BY 2 DESC
 LIMIT 5;
 
--- Find users who have placed orders exceeding a certain amount (800):
+-- Find users who have placed orders exceeding a certain amount ($800):
 SELECT DISTINCT u.user_id AS "User ID", u.username AS "Username", o.total_amount AS "Order Total"
 FROM Users u JOIN Orders o
   ON u.user_id = o.user_id
